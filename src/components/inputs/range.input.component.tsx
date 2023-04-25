@@ -1,15 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useEffect, useState } from 'react';
-import type { StyleProp } from 'react-native';
-import type { ViewStyle } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { Image } from 'react-native';
 import {
+  StyleProp,
+  ViewStyle,
   TouchableOpacity,
   View,
-  NativeModules,
-  Platform,
   StyleSheet,
   TextInput,
+  Platform,
+  NativeModules,
 } from 'react-native';
 // ? White Assets
 const plusIconWhite = require('../../assets/icons/plus-white.png');
@@ -18,11 +18,15 @@ const minusIconWhite = require('../../assets/icons/minus-white.png');
 const plusIconBlack = require('../../assets/icons/plus-black.png');
 const minusIconBlack = require('../../assets/icons/minus-black.png');
 
-const LINKING_ERROR =
-  `The package 'react-native-hnl-lib' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+/**
+ *          />________________________________
+ *[########[]_________________________________>
+ *           \>
+ * @author Noel Miranda
+ * @date  10:00 AM 21/03/2023
+ * @version: 1.0.0
+ */
+
 type CustomStyleProp = StyleProp<ViewStyle> | Array<StyleProp<ViewStyle>>;
 
 interface props {
@@ -36,6 +40,12 @@ interface props {
   leftDisable?: boolean;
   rigthDisable?: boolean;
 }
+
+const LINKING_ERROR =
+  `The package 'react-native-hnl-lib' doesn't seem to be linked. Make sure: \n\n` +
+  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
+  '- You rebuilt the app after installing the package\n' +
+  '- You are not using Expo Go\n';
 
 const CounterInput = ({
   onChange,
@@ -69,10 +79,19 @@ const CounterInput = ({
   // Funtions
   const handleOnDecreasePress = () => {
     // let value;
-    if (min === undefined || counter > min) {
+    console.log('COUNTER_: ', counter);
+    console.log('min: ', min);
+    if (
+      (min === undefined && counter > 0) ||
+      (min && counter > min && counter > 0)
+    ) {
       //   value = counter - 1;
+      console.log('HOLA: ', counter);
       setCounter((prevState: number) => prevState - 1);
       onChange && onChange(counter);
+    } else {
+      setCounter(1);
+      onChange && onChange(1);
     }
   };
 
@@ -87,14 +106,14 @@ const CounterInput = ({
 
   // change value from input
   const handleOnChangeText = (text: string) => {
-    let input = parseInt(text, 10) || 0;
-    let oldNumber = counter;
+    let input = parseInt(text, 10) || 1;
     if (
-      (min !== undefined && input < min) ||
-      (max !== undefined && input > max)
+      (min !== undefined && input < min && input > 0) ||
+      (max !== undefined && input > max && input > 0) ||
+      input < 0
     ) {
-      setCounter(oldNumber);
-      onChange && onChange(oldNumber);
+      setCounter(1);
+      onChange && onChange(1);
     } else {
       setCounter(input);
       onChange && onChange(input);
@@ -123,7 +142,7 @@ const CounterInput = ({
       <TextInput
         numberOfLines={1}
         maxLength={6}
-        keyboardType="numeric"
+        keyboardType="number-pad"
         style={[
           styleLocal.textInputStyle,
           { width: width ? width : counter.toString().length > 3 ? 100 : 40 },

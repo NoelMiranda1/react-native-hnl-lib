@@ -2,11 +2,32 @@ import React, { useEffect } from 'react';
 import {
   TouchableOpacity,
   Text,
+  StyleSheet,
   NativeModules,
   Platform,
-  StyleSheet,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
 } from 'react-native';
-import type { buttonT } from 'src/interfaces/components.interfaces';
+
+/**
+ *          />________________________________
+ *[########[]_________________________________>
+ *           \>
+ * @author Noel Miranda
+ * @date  02:00 PM 21/03/2023
+ * @version: 1.0.0
+ */
+
+type CustomTextStyleProp = StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
+
+export interface buttonT {
+  onPress: () => void;
+  title: string;
+  style?: StyleProp<ViewStyle>;
+  textStyle?: CustomTextStyleProp;
+  disabled?: boolean;
+}
 
 const LINKING_ERROR =
   `The package 'react-native-hnl-lib' doesn't seem to be linked. Make sure: \n\n` +
@@ -15,6 +36,9 @@ const LINKING_ERROR =
   '- You are not using Expo Go\n';
 
 const Button = ({ onPress, title, style, textStyle, disabled }: buttonT) => {
+  /**
+   * Valida la existencia del packate
+   */
   useEffect(() => {
     NativeModules.HnlLib
       ? NativeModules.HnlLib
@@ -27,7 +51,6 @@ const Button = ({ onPress, title, style, textStyle, disabled }: buttonT) => {
           }
         );
   }, []);
-
   return (
     <TouchableOpacity
       disabled={disabled ?? false}
@@ -40,7 +63,7 @@ const Button = ({ onPress, title, style, textStyle, disabled }: buttonT) => {
 };
 
 const styleLocal = StyleSheet.create({
-  button: { backgroundColor: 'blue', padding: 10, borderRadius: 10 },
+  button: { backgroundColor: '#003082', padding: 10, borderRadius: 10 },
   text: { color: '#fff' },
 });
 

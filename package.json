@@ -1,12 +1,12 @@
 {
-  "name": "@hypernovalabs/react-native-hnl-lib",
-  "version": "0.1.0",
+  "name": "react-native-hnl-lib",
+  "version": "0.1.7",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
+  "react-native": "./src/index",
+  "source": "./src/index",
   "files": [
     "src",
     "lib",
@@ -27,6 +27,7 @@
     "!**/.*"
   ],
   "scripts": {
+    "build": "bob build",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -43,18 +44,22 @@
   ],
   "repository": "https://github.com/NoelMiranda1/react-native-hnl-lib",
   "author": "Noel Miranda <mirandantonionoel@gmail.com> (https://github.com/NoelMiranda1)",
+  "contributors": [
+    {
+      "name": "Eric Mason",
+      "email": "emason@hypernovalabs.com",
+      "url": "https://github.com/ericMaxon"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/NoelMiranda1/react-native-hnl-lib/issues"
   },
   "homepage": "https://github.com/NoelMiranda1/react-native-hnl-lib#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "restricted"
-  },
+  
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.2.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@evilmartians/lefthook": "^1.2.2",
     "@react-native-community/eslint-config": "^3.0.2",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",
@@ -77,6 +82,7 @@
   "resolutions": {
     "@types/react": "17.0.21"
   },
+ 
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
@@ -84,7 +90,6 @@
   "engines": {
     "node": ">= 16.0.0"
   },
-  "packageManager": "^yarn@1.22.15",
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [

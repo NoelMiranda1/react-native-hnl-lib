@@ -5,17 +5,23 @@ Libreria privada para HypernovaLabs brindada por su servidor Noel Miranda
 ## Installation
 
 ```sh
-npm install react-native-hnl-lib
+npm install react-native-hnl-lib@0.1.6 --legacy-peer-deps
 ```
 
 ## Usage
 
+## En el proyecto de ejemplo tendran un ejemplo de todos los componentes existentes
+
 ```js
-import { suma } from 'react-native-hnl-lib';
+import { suma,TopBarEnviroment } from 'react-native-hnl-lib';
 
 // ...
 
 const result = suma(3, 7);
+console.log(result)
+<TopBarEnviroment env="prod">
+    <AnyComponent>
+</TopBarEnviroment>
 ```
 
 ## Contributing
