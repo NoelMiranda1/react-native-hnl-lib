@@ -1,6 +1,6 @@
 # react-native-hnl-lib
 
-Libreria privada para HypernovaLabs brindada por su servidor Noel Miranda
+Libreria react native Noel Miranda
 
 ## Installation
 
