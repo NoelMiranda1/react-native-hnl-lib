@@ -1,6 +1,6 @@
 # react-native-hnl-lib
 
-Libreria react native Noel Miranda
+Libreria react native Noel Miranda V-0.0.1
 
 ## Installation
 

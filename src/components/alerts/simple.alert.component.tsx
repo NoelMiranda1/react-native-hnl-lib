@@ -65,7 +65,7 @@ const Alert: React.FC<Props> = ({
   onClose,
   titleStyle,
   discriptionStyle,
-}) => {
+}:Props) => {
   /**
    * Valida la existencia del packate
    */
